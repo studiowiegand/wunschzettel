@@ -1,0 +1,4 @@
+window.WZ_CONFIG = {
+  supabaseUrl: "https://yazeofffgqtkebkwlxkj.supabase.co",
+  supabaseAnonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlhemVvZmZmZ3F0a2Via3dseGtqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTQ1NjYyNTAsImV4cCI6MjExMDE0MjI1MH0.MAgp92odpS0c359WHeVGvLa2JZl6tJpTp8Zk2wSMWlA"
+};

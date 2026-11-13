@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wunschzettel Ole &amp; Merle</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap">
+<style>
+/* Studora-Look: Creme-Grund, tiefes Waldgrün, Orange als Aktion, Pastell je Kind. Layout: Hero mit Kinderwahl, Welle, Filter, Kartenraster */
+:root {
+  color-scheme: light;
+  --cream: #f4f0e5;
+  --sand: #eae4d3;
+  --forest: #14261d;
+  --forest-2: #1b3428;
+  --moss: #497e64;
+  --text: #45564b;
+  --orange: #e8722c;
+  --orange-edge: #b26e45;
+  --line: rgba(20, 38, 29, .1);
+  --ole: #c9e0f2;
+  --ole-ink: #2f5f86;
+  --merle: #f6d7e8;
+  --merle-ink: #8e3f68;
+  --lime: #d6e59a;
+  --white: #ffffff;
+  --font-head: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --r-card: 20px;
+  --r-pill: 100px;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--cream); color: var(--text);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.4;
+  padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+.wrap {
+  max-width: 1260px; margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+h1, h2, h3 { font-family: var(--font-head); color: var(--forest); margin: 0; text-wrap: balance; }
+
+/* Kopfzeile */
+.nav .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding-block: 18px; }
+.logo { font-family: var(--font-head); font-weight: 800; font-size: 22px; color: var(--forest); letter-spacing: -0.04em; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+.logo svg { width: 26px; height: 26px; }
+.countdown { font-size: 14px; font-weight: 500; color: var(--forest); background: var(--lime); border-radius: var(--r-pill); padding: 8px 16px; white-space: nowrap; }
+
+/* Buttons wie Studora: Pille mit fester Schattenkante */
+.btn {
+  font: 500 16px/1.3 var(--font-body); display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  border-radius: var(--r-pill); padding: 10px 20px; cursor: pointer; text-decoration: none;
+  border: 1px solid var(--forest-2); background: var(--cream); color: var(--forest);
+  box-shadow: 0 4px 0 0 var(--forest-2); transition: transform .12s, box-shadow .12s;
+}
+.btn:hover { transform: translateY(2px); box-shadow: 0 2px 0 0 var(--forest-2); }
+.btn:active { transform: translateY(4px); box-shadow: 0 0 0 0 var(--forest-2); }
+.btn.orange { background: var(--orange); border-color: var(--orange-edge); box-shadow: 0 4px 0 0 var(--orange-edge); color: var(--forest); }
+.btn.orange:hover { box-shadow: 0 2px 0 0 var(--orange-edge); }
+.btn.dark { background: var(--forest-2); border-color: var(--moss); box-shadow: 0 4px 0 0 var(--moss); color: var(--white); }
+.btn.dark:hover { box-shadow: 0 2px 0 0 var(--moss); }
+.btn.small { font-size: 14px; padding: 7px 14px; }
+.btn.link { border: 0; box-shadow: none; background: none; padding: 6px 4px; color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+.btn.link:hover { transform: none; color: var(--forest); }
+.btn[disabled] { opacity: .5; cursor: default; transform: none; }
+:focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; }
+
+/* Hero */
+.hero { text-align: center; padding-block: 36px 8px; }
+.hero h1 {
+  font-weight: 700; font-size: clamp(46px, 9vw, 112px); line-height: .95; letter-spacing: -0.06em;
+}
+.hero h1 .swash { display: inline-block; color: var(--moss); transform: rotate(-5deg) translateY(.06em); font-weight: 800; }
+.hero p { max-width: 54ch; margin: 22px auto 0; font-size: 18px; }
+.kids { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
+.kid {
+  font: inherit; cursor: pointer; min-width: 220px; flex: 0 1 280px; text-align: left;
+  border-radius: var(--r-card); border: 1px solid var(--line); background: var(--white);
+  padding: 16px 20px; display: flex; align-items: center; gap: 14px; color: var(--forest);
+  box-shadow: 0 4px 0 0 var(--sand); transition: transform .12s, box-shadow .12s, background-color .2s;
+}
+.kid .dot { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; font: 800 22px var(--font-head); flex: none; }
+.kid.ole .dot { background: var(--ole); color: var(--ole-ink); }
+.kid.merle .dot { background: var(--merle); color: var(--merle-ink); }
+.kid b { display: block; font: 700 26px/1 var(--font-head); letter-spacing: -0.04em; }
+.kid small { display: block; font-size: 14px; color: var(--text); margin-top: 4px; font-variant-numeric: tabular-nums; }
+.kid[aria-selected="true"] { border-color: var(--forest-2); box-shadow: 0 4px 0 0 var(--forest-2); }
+.kid.ole[aria-selected="true"] { background: var(--ole); }
+.kid.merle[aria-selected="true"] { background: var(--merle); }
+
+/* Welle */
+.wave { margin-top: 26px; height: 120px; overflow: hidden; }
+.wave svg { width: 100%; height: 120px; display: block; }
+.wave text { font: 600 15px var(--font-body); fill: var(--cream); letter-spacing: .02em; }
+
+/* Filter */
+.filters { background: var(--sand); position: sticky; top: 0; z-index: 5; }
+.filters .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; padding-block: 14px; }
+.range { flex: 1 1 280px; min-width: 0; }
+.range-head { display: flex; justify-content: space-between; gap: 8px; font-size: 14px; }
+.range-head output { color: var(--forest); font-weight: 600; font-variant-numeric: tabular-nums; }
+.slider { position: relative; height: 30px; }
+.slider .track, .slider .fill { position: absolute; top: 13px; height: 4px; border-radius: 4px; }
+.slider .track { left: 0; right: 0; background: rgba(20, 38, 29, .15); }
+.slider .fill { background: var(--forest-2); }
+.slider input { position: absolute; inset: 0; width: 100%; margin: 0; background: none; pointer-events: none; -webkit-appearance: none; appearance: none; height: 30px; }
+.slider input::-webkit-slider-thumb { -webkit-appearance: none; pointer-events: auto; width: 24px; height: 24px; border-radius: 50%; background: var(--orange); border: 2px solid var(--forest-2); cursor: grab; }
+.slider input::-moz-range-thumb { pointer-events: auto; width: 20px; height: 20px; border-radius: 50%; background: var(--orange); border: 2px solid var(--forest-2); cursor: grab; }
+.slider input::-moz-range-track { background: none; }
+.seg { display: inline-flex; background: var(--cream); border-radius: var(--r-pill); padding: 4px; border: 1px solid var(--line); }
+.seg button { font: 500 14px var(--font-body); border: 0; background: none; color: var(--text); padding: 7px 14px; border-radius: var(--r-pill); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--forest-2); color: var(--white); }
+.toggle { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; cursor: pointer; color: var(--forest); }
+.toggle input { width: 18px; height: 18px; accent-color: var(--forest-2); }
+
+/* Raster */
+main { padding-block: 34px 80px; }
+.list-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 22px; }
+.list-head h2 { font-weight: 700; font-size: clamp(34px, 5vw, 52px); letter-spacing: -0.06em; line-height: 1; }
+.list-head p { margin: 0; font-variant-numeric: tabular-nums; }
+.notice { background: var(--white); border: 1px solid var(--line); border-radius: var(--r-card); padding: 14px 18px; margin-bottom: 20px; color: var(--forest); }
+.notice:empty { display: none; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 20px; align-items: start; }
+.card {
+  background: var(--white); border: 1px solid var(--line); border-radius: var(--r-card);
+  overflow: hidden; display: flex; flex-direction: column; min-width: 0;
+}
+.card .pic { aspect-ratio: 4 / 3; display: grid; place-items: center; padding: 18px; position: relative; max-width: 100%; }
+.ole .card .pic { background: var(--ole); }
+.merle .card .pic { background: var(--merle); }
+.card .pic img { position: absolute; inset: 18px; width: calc(100% - 36px); height: calc(100% - 36px); object-fit: contain; mix-blend-mode: multiply; }
+.card .pic .ph { font: 800 64px var(--font-head); color: var(--forest); opacity: .25; }
+.badge { position: absolute; top: 14px; left: 14px; background: var(--forest-2); color: var(--white); font-size: 13px; font-weight: 500; padding: 5px 12px; border-radius: var(--r-pill); }
+.badge.pool { background: var(--orange); color: var(--forest); }
+.card .body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.card .top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.card h3 { font-weight: 600; font-size: 21px; line-height: 1.15; letter-spacing: -0.04em; min-width: 0; overflow-wrap: anywhere; }
+.card h3 a { color: inherit; text-decoration: none; }
+.card h3 a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.price { font: 700 21px var(--font-head); color: var(--forest); white-space: nowrap; font-variant-numeric: tabular-nums; letter-spacing: -0.03em; }
+.shop { font-size: 14px; }
+.note { font-size: 14px; margin: 0; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px 10px; align-items: center; margin-top: auto; padding-top: 8px; }
+.claim-row { display: flex; flex-wrap: wrap; gap: 8px; width: 100%; }
+.claim-row input { flex: 1 1 120px; min-width: 0; }
+input[type="text"], input[type="number"], input[type="url"], input[type="email"], select {
+  font: 16px var(--font-body); color: var(--forest); background: var(--cream);
+  border: 1px solid var(--line); border-radius: var(--r-pill); padding: 10px 16px; min-width: 0;
+}
+.bought-chip { display: inline-flex; align-items: center; gap: 8px; background: var(--lime); color: var(--forest); font-weight: 600; font-size: 14px; padding: 7px 14px; border-radius: var(--r-pill); }
+.card.bought .pic { filter: grayscale(.7); opacity: .6; }
+.card.bought h3, .card.bought .price { text-decoration: line-through; text-decoration-thickness: 1px; color: var(--text); }
+
+/* Sammeltopf */
+.pool { background: var(--cream); border-radius: 14px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.pool-head { display: flex; justify-content: space-between; gap: 8px; font-size: 14px; color: var(--forest); font-variant-numeric: tabular-nums; }
+.pool-head b { font: 700 18px var(--font-head); letter-spacing: -0.03em; }
+.bar { height: 12px; border-radius: 12px; background: var(--sand); overflow: hidden; }
+.bar span { display: block; height: 100%; background: var(--moss); border-radius: 12px; transition: width .4s; }
+.pool ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 4px; font-size: 14px; }
+.pool li { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-variant-numeric: tabular-nums; }
+.pool li .x { font: inherit; font-size: 13px; border: 0; background: none; color: var(--text); text-decoration: underline; cursor: pointer; padding: 2px; }
+.pool form { display: flex; flex-wrap: wrap; gap: 8px; }
+.pool form input[type="text"] { flex: 1 1 120px; }
+.pool form input[type="number"] { flex: 0 1 110px; }
+.empty { padding: 28px; border: 1px dashed rgba(20, 38, 29, .25); border-radius: var(--r-card); text-align: center; grid-column: 1 / -1; }
+
+/* Verwaltung */
+.admin { margin-top: 48px; background: var(--forest-2); color: var(--cream); border-radius: 30px; padding: clamp(22px, 4vw, 40px); }
+.admin h2 { color: var(--white); font-weight: 700; font-size: clamp(28px, 4vw, 40px); letter-spacing: -0.05em; }
+.admin p { margin: 8px 0 20px; max-width: 60ch; }
+.admin .grid-form { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.admin label { display: flex; flex-direction: column; gap: 6px; font-size: 14px; min-width: 0; }
+.admin .wide { grid-column: 1 / -1; }
+.admin .row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 20px; }
+.admin .msg { font-size: 14px; }
+.admin .check { flex-direction: row; align-items: center; gap: 8px; }
+.admin .check input { width: 18px; height: 18px; accent-color: var(--orange); }
+
+footer { border-top: 1px solid var(--line); }
+footer .wrap { padding-block: 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 14px; }
+footer a { color: var(--forest); }
+
+@media (max-width: 560px) {
+  .kid { min-width: 0; flex: 1 1 100%; }
+  .countdown { font-size: 13px; padding: 7px 12px; }
+  .filters { position: static; }
+}
+@media (prefers-reduced-motion: reduce) { .btn, .kid, .bar span { transition: none; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="12" width="22" height="16" rx="3" fill="#e8722c"/><rect x="3" y="8" width="26" height="6" rx="2" fill="#1b3428"/><rect x="14" y="8" width="4" height="20" fill="#d6e59a"/><path d="M16 8c-3-6-9-5-8-1 1 3 8 1 8 1zm0 0c3-6 9-5 8-1-1 3-8 1-8 1z" fill="#497e64"/></svg>
+      Wunschzettel
+    </a>
+    <span class="countdown" id="countdown"></span>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Wünsche für Ole <span class="swash">&amp;</span> Merle</h1>
+    <p>Such dir ein Kind aus, schau, was noch offen ist, und trag ein, was du besorgst. So liegt nichts doppelt unterm Baum.</p>
+    <div class="kids" role="tablist" aria-label="Kind auswählen">
+      <button class="kid ole" role="tab" id="tab-ole" data-kid="ole" aria-selected="true" aria-controls="panel">
+        <span class="dot" aria-hidden="true">O</span><span><b>Ole</b><small id="sub-ole">&nbsp;</small></span>
+      </button>
+      <button class="kid merle" role="tab" id="tab-merle" data-kid="merle" aria-selected="false" aria-controls="panel">
+        <span class="dot" aria-hidden="true">M</span><span><b>Merle</b><small id="sub-merle">&nbsp;</small></span>
+      </button>
+    </div>
+  </div>
+  <div class="wave" aria-hidden="true">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path id="wavePath" d="M-40 70 C 200 10, 420 110, 720 60 S 1240 10, 1480 60" fill="none" stroke="#497e64" stroke-width="34" stroke-linecap="round"/>
+      <text dy="5"><textPath id="waveText" href="#wavePath" startOffset="0">Leise rieselt der Schnee · O Tannenbaum, wie grün sind deine Blätter · Kling, Glöckchen, klingelingeling · Morgen, Kinder, wird's was geben · Alle Jahre wieder · Süßer die Glocken nie klingen · Stille Nacht, heilige Nacht · Leise rieselt der Schnee · O Tannenbaum, wie grün sind deine Blätter · Kling, Glöckchen, klingelingeling · Morgen, Kinder, wird's was geben · Alle Jahre wieder · Süßer die Glocken nie klingen · Stille Nacht, heilige Nacht ·</textPath></text>
+    </svg>
+  </div>
+</section>
+
+<div class="filters">
+  <div class="wrap">
+    <div class="range">
+      <div class="range-head"><label for="maxPrice">Preis</label><output id="rangeOut"></output></div>
+      <div class="slider">
+        <div class="track"></div><div class="fill" id="rangeFill"></div>
+        <input type="range" id="minPrice" min="0" max="400" step="5" value="0" aria-label="Mindestpreis">
+        <input type="range" id="maxPrice" min="0" max="400" step="5" value="400" aria-label="Höchstpreis">
+      </div>
+    </div>
+    <div class="seg" role="group" aria-label="Anlass" id="occSeg" hidden>
+      <button type="button" data-occ="all" aria-pressed="true">Alle</button>
+      <button type="button" data-occ="weihnachten" aria-pressed="false">Weihnachten</button>
+      <button type="button" data-occ="nikolaus" aria-pressed="false">Nikolaus</button>
+    </div>
+    <label class="toggle"><input type="checkbox" id="hideBought"> Gekaufte ausblenden</label>
+  </div>
+</div>
+
+<main>
+  <div class="wrap">
+    <div class="notice" id="notice" role="status"></div>
+    <section id="panel" role="tabpanel" aria-labelledby="tab-ole" class="ole">
+      <div class="list-head"><h2 id="listTitle">Oles Wünsche</h2><p id="listSub"></p></div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <section class="admin" id="admin" hidden>
+      <div id="adminLogin">
+        <h2>Verwaltung</h2>
+        <p>Hier legt ihr neue Geschenke an und seht die Nikolausgeschenke. Gib deine E-Mail ein, du bekommst einen Anmeldelink.</p>
+        <form id="loginForm" class="row">
+          <input type="email" id="loginEmail" required placeholder="deine@email.de" autocomplete="email">
+          <button class="btn orange" type="submit">Anmeldelink schicken</button>
+          <span class="msg" id="loginMsg" role="status"></span>
+        </form>
+      </div>
+      <form id="addForm" hidden>
+        <h2>Geschenk hinzufügen</h2>
+        <p>Neue Wünsche erscheinen sofort bei allen, die den Zettel offen haben. Nikolausgeschenke seht nur ihr beide, wenn ihr angemeldet seid.</p>
+        <div class="grid-form">
+          <label>Für<select id="f-child"><option value="ole">Ole</option><option value="merle">Merle</option></select></label>
+          <label>Anlass<select id="f-occ"><option value="weihnachten">Weihnachten</option><option value="nikolaus">Nikolaus</option></select></label>
+          <label class="wide">Geschenk<input type="text" id="f-title" required placeholder="z. B. Holzeisenbahn Starterset"></label>
+          <label>Shop<input type="text" id="f-shop" placeholder="z. B. Ströppche"></label>
+          <label>Preis in €<input type="number" id="f-price" min="0" step="0.01" required placeholder="29,90"></label>
+          <label class="wide">Link zum Shop<input type="url" id="f-url" placeholder="https://"></label>
+          <label class="wide">Hinweis<input type="text" id="f-note" placeholder="z. B. Batterien nicht dabei"></label>
+          <label>Bild<input type="file" id="f-img" accept="image/*"></label>
+          <label class="check"><input type="checkbox" id="f-pool"> Sammelgeschenk, mehrere legen zusammen</label>
+        </div>
+        <div class="row">
+          <button class="btn orange" type="submit" id="f-submit">Auf den Zettel setzen</button>
+          <button class="btn link" type="button" id="logout" style="color:var(--cream)">Abmelden</button>
+          <span class="msg" id="f-msg" role="status"></span>
+        </div>
+      </form>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Wunschzettel für Ole und Merle</span>
+    <a href="#admin" id="adminLink">Verwaltung</a>
+  </div>
+</footer>
+
+<script src="config.js"></script>
+<script src="seed.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+(function () {
+  "use strict";
+  const $ = (id) => document.getElementById(id);
+  const cfg = window.WZ_CONFIG || {};
+  const live = !!(cfg.supabaseUrl && cfg.supabaseAnonKey && window.supabase);
+  const sb = live ? window.supabase.createClient(cfg.supabaseUrl, cfg.supabaseAnonKey) : null;
+  const ls = {
+    get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+  };
+  const euro = (n) => (Number(n) || 0).toLocaleString("de-DE", { style: "currency", currency: "EUR" });
+  const euroShort = (n) => euro(n).replace(",00", "");
+  const hk = location.hash.slice(1);
+
+  const state = {
+    gifts: [], claims: {}, contribs: [],
+    kid: hk === "merle" || hk === "ole" ? hk : ls.get("wz-kid", "ole"),
+    min: 0, max: 400, ceil: 400, occ: "all", hideBought: ls.get("wz-hide", false),
+    claiming: null, confirmDelete: null, admin: false, loaded: false,
+  };
+  $("hideBought").checked = state.hideBought;
+
+  function el(tag, attrs, ...kids) {
+    const n = document.createElement(tag);
+    if (attrs) for (const [k, v] of Object.entries(attrs)) {
+      if (v == null || v === false) continue;
+      if (k === "class") n.className = v;
+      else if (k.startsWith("on")) n.addEventListener(k.slice(2), v);
+      else n.setAttribute(k, v === true ? "" : v);
+    }
+    for (const c of kids) if (c != null && c !== false) n.append(c);
+    return n;
+  }
+  function notice(t) { $("notice").textContent = t || ""; }
+
+  /* ---------- Countdown ---------- */
+  (function countdown() {
+    const now = new Date(); const y = now.getFullYear();
+    const day = 86400000, today = new Date(y, now.getMonth(), now.getDate());
+    const nik = new Date(y, 11, 6), xmas = new Date(y, 11, 24);
+    const d1 = Math.round((nik - today) / day), d2 = Math.round((xmas - today) / day);
+    let t = "";
+    if (d2 > 1) t = "Noch " + d2 + " Tage bis Heiligabend";
+    else if (d2 === 1) t = "Morgen ist Heiligabend";
+    else if (d2 === 0) t = "Heute ist Heiligabend";
+    $("countdown").textContent = t; $("countdown").hidden = !t;
+  })();
+
+  /* ---------- Welle ---------- */
+  (function wave() {
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const tp = $("waveText"); let off = 0;
+    (function tick() { off -= 0.04; if (off < -50) off = 0; tp.setAttribute("startOffset", off + "%"); requestAnimationFrame(tick); })();
+  })();
+
+  /* ---------- Daten ---------- */
+  const api = live ? {
+    async load() {
+      const [g, c, p] = await Promise.all([
+        sb.from("gifts").select("*").order("sort").order("created_at"),
+        sb.from("claims").select("*"),
+        sb.from("contributions").select("*").order("created_at"),
+      ]);
+      if (g.error) throw g.error;
+      state.gifts = g.data || [];
+      state.claims = Object.fromEntries((c.data || []).map((r) => [r.gift_id, r]));
+      state.contribs = p.data || [];
+    },
+    async claim(id, name) { const r = await sb.from("claims").insert({ gift_id: id, name }); if (r.error) throw r.error; },
+    async unclaim(id) { const r = await sb.from("claims").delete().eq("gift_id", id); if (r.error) throw r.error; },
+    async contribute(id, name, amount) { const r = await sb.from("contributions").insert({ gift_id: id, name, amount }); if (r.error) throw r.error; },
+    async uncontribute(cid) { const r = await sb.from("contributions").delete().eq("id", cid); if (r.error) throw r.error; },
+    async addGift(data) { const r = await sb.from("gifts").insert(data); if (r.error) throw r.error; },
+    async deleteGift(id) { const r = await sb.from("gifts").delete().eq("id", id); if (r.error) throw r.error; },
+    async upload(file) {
+      const blob = await shrink(file);
+      const path = Date.now().toString(36) + ".jpg";
+      const r = await sb.storage.from("bilder").upload(path, blob, { contentType: "image/jpeg" });
+      if (r.error) throw r.error;
+      return sb.storage.from("bilder").getPublicUrl(path).data.publicUrl;
+    },
+  } : {
+    // Vorschau ohne Datenbank: Geschenke aus seed.js, Häkchen nur in diesem Browser
+    async load() {
+      const extra = ls.get("wz-demo-gifts", []), removed = ls.get("wz-demo-removed", []);
+      state.gifts = (window.WZ_SEED || []).concat(extra).filter((g) => !removed.includes(g.id));
+      state.claims = ls.get("wz-demo-claims", {});
+      state.contribs = ls.get("wz-demo-contribs", []);
+    },
+    async claim(id, name) { const c = ls.get("wz-demo-claims", {}); c[id] = { gift_id: id, name }; ls.set("wz-demo-claims", c); },
+    async unclaim(id) { const c = ls.get("wz-demo-claims", {}); delete c[id]; ls.set("wz-demo-claims", c); },
+    async contribute(id, name, amount) { const c = ls.get("wz-demo-contribs", []); c.push({ id: "c" + Date.now(), gift_id: id, name, amount }); ls.set("wz-demo-contribs", c); },
+    async uncontribute(cid) { ls.set("wz-demo-contribs", ls.get("wz-demo-contribs", []).filter((c) => c.id !== cid)); },
+    async addGift(data) { const g = ls.get("wz-demo-gifts", []); g.push(Object.assign({ id: "g" + Date.now() }, data)); ls.set("wz-demo-gifts", g); },
+    async deleteGift(id) { const r = ls.get("wz-demo-removed", []); r.push(id); ls.set("wz-demo-removed", r); },
+    async upload(file) { const b = await shrink(file); return await new Promise((res) => { const fr = new FileReader(); fr.onload = () => res(fr.result); fr.readAsDataURL(b); }); },
+  };
+
+  async function shrink(file) {
+    try {
+      const bmp = await createImageBitmap(file);
+      const s = Math.min(1, 640 / Math.max(bmp.width, bmp.height));
+      const c = document.createElement("canvas");
+      c.width = Math.round(bmp.width * s); c.height = Math.round(bmp.height * s);
+      const x = c.getContext("2d"); x.fillStyle = "#fff"; x.fillRect(0, 0, c.width, c.height); x.drawImage(bmp, 0, 0, c.width, c.height);
+      return await new Promise((r) => c.toBlob((b) => r(b || file), "image/jpeg", 0.85));
+    } catch (e) { return file; }
+  }
+
+  async function act(fn, okMsg) {
+    try { await fn(); await refresh(); if (okMsg) notice(okMsg); return true; }
+    catch (e) { console.error(e); notice("Das hat nicht geklappt. Prüfe die Internetverbindung und versuche es noch einmal."); return false; }
+  }
+
+  async function refresh() {
+    try {
+      await api.load(); state.loaded = true;
+      state.gifts.sort((a, b) => (a.sort ?? 1000) - (b.sort ?? 1000) || String(a.created_at || '').localeCompare(String(b.created_at || '')));
+    }
+    catch (e) { console.error(e); state.loaded = true; notice("Der Wunschzettel konnte nicht geladen werden. Lade die Seite neu."); }
+    const top = Math.max(50, ...state.gifts.map((g) => Number(g.price) || 0));
+    const ceil = Math.ceil(top / 10) * 10;
+    const full = state.max >= state.ceil;
+    state.ceil = ceil; if (full || state.max > ceil) state.max = ceil;
+    updateRange(); render();
+  }
+
+  /* ---------- Logik ---------- */
+  const poolSum = (g) => state.contribs.filter((c) => c.gift_id === g.id).reduce((s, c) => s + Number(c.amount || 0), 0);
+  const isDone = (g) => !!state.claims[g.id] || (g.pool && poolSum(g) >= Number(g.price));
+  // Nikolausgeschenke sieht nur, wer angemeldet ist (Nadia und Lukas)
+  const seen = () => state.gifts.filter((g) => state.admin || g.occasion !== "nikolaus");
+  function visible(g) {
+    const p = Number(g.price) || 0;
+    if (p < state.min || p > state.max) return false;
+    if (state.occ !== "all" && (g.occasion || "weihnachten") !== state.occ) return false;
+    if (state.hideBought && isDone(g)) return false;
+    return true;
+  }
+
+  function updateRange() {
+    const lo = $("minPrice"), hi = $("maxPrice");
+    lo.max = hi.max = state.ceil; lo.value = state.min; hi.value = state.max;
+    $("rangeFill").style.left = (state.min / state.ceil) * 100 + "%";
+    $("rangeFill").style.right = (100 - (state.max / state.ceil) * 100) + "%";
+    $("rangeOut").textContent = euroShort(state.min) + " bis " + euroShort(state.max);
+  }
+
+  function poolBox(g) {
+    const sum = poolSum(g), price = Number(g.price) || 0;
+    const pct = price ? Math.min(100, Math.round((sum / price) * 100)) : 0;
+    const mine = state.contribs.filter((c) => c.gift_id === g.id);
+    const name = el("input", { type: "text", id: "pn-" + g.id, placeholder: "Dein Name", "aria-label": "Dein Name", value: ls.get("wz-name", "") });
+    const amt = el("input", { type: "number", id: "pa-" + g.id, min: "1", max: "1000", step: "1", placeholder: "€", "aria-label": "Betrag in Euro" });
+    const form = el("form", { onsubmit: async (e) => {
+      e.preventDefault();
+      const n = name.value.trim(), a = Math.round(Number(String(amt.value).replace(",", ".")) * 100) / 100;
+      if (!n) return name.focus();
+      if (!(a > 0)) return amt.focus();
+      ls.set("wz-name", n);
+      await act(() => api.contribute(g.id, n, a), "Danke, " + n + "! Dein Beitrag von " + euro(a) + " ist eingetragen.");
+    } }, name, amt, el("button", { class: "btn orange small", type: "submit" }, "Ich beteilige mich"));
+    return el("div", { class: "pool" },
+      el("div", { class: "pool-head" }, el("span", null, el("b", null, euroShort(sum)), " von " + euroShort(price) + " zusammen"), el("span", null, pct + " %")),
+      el("div", { class: "bar", role: "progressbar", "aria-valuemin": "0", "aria-valuemax": "100", "aria-valuenow": String(pct), "aria-label": "Gesammelt" }, el("span", { style: "width:" + pct + "%" })),
+      mine.length ? el("ul", null, ...mine.map((c) => el("li", null,
+        el("span", null, c.name + ": " + euro(c.amount)),
+        el("button", { class: "x", type: "button", onclick: () => act(() => api.uncontribute(c.id)) }, "zurückziehen")))) : null,
+      sum < price ? form : el("span", { class: "bought-chip" }, "✓ Komplett finanziert"));
+  }
+
+  function card(g) {
+    const claim = state.claims[g.id], done = isDone(g);
+    const pic = el("div", { class: "pic" },
+      g.img ? el("img", { src: g.img, alt: g.title, loading: "lazy" }) : el("span", { class: "ph", "aria-hidden": "true" }, (g.title || "?").charAt(0)),
+      g.occasion === "nikolaus" ? el("span", { class: "badge" }, "Nikolaus") : null,
+      g.pool ? el("span", { class: "badge pool", style: g.occasion === "nikolaus" ? "left:auto;right:14px" : null }, "Sammelgeschenk") : null);
+    const title = g.url ? el("a", { href: g.url, target: "_blank", rel: "noopener" }, g.title) : g.title;
+    const actions = el("div", { class: "actions" });
+
+    if (claim) {
+      actions.append(el("span", { class: "bought-chip" }, "✓ Gekauft von " + claim.name),
+        el("button", { class: "btn link", type: "button", onclick: () => act(() => api.unclaim(g.id)) }, "Rückgängig"));
+    } else if (state.claiming === g.id) {
+      const inp = el("input", { type: "text", id: "cn-" + g.id, placeholder: "Dein Name", "aria-label": "Wer kauft das?", value: ls.get("wz-name", "") });
+      const go = async () => {
+        const n = inp.value.trim(); if (!n) return inp.focus();
+        ls.set("wz-name", n); state.claiming = null;
+        await act(() => api.claim(g.id, n), "Notiert: " + n + " kauft " + g.title + ".");
+      };
+      inp.addEventListener("keydown", (e) => { if (e.key === "Enter") go(); if (e.key === "Escape") { state.claiming = null; render(); } });
+      actions.append(el("div", { class: "claim-row" }, inp, el("button", { class: "btn dark small", type: "button", onclick: go }, "Gekauft")),
+        el("button", { class: "btn link", type: "button", onclick: () => { state.claiming = null; render(); } }, "Abbrechen"));
+      setTimeout(() => inp.focus(), 0);
+    } else if (!done) {
+      actions.append(el("button", { class: "btn dark small", type: "button", onclick: () => { state.claiming = g.id; render(); } }, g.pool ? "Ich kaufe es komplett" : "Ich kaufe das"));
+      if (g.url) actions.append(el("a", { class: "btn small", href: g.url, target: "_blank", rel: "noopener" }, "Zum Shop"));
+    }
+    if (state.admin) {
+      if (state.confirmDelete === g.id) actions.append(
+        el("button", { class: "btn small", type: "button", onclick: () => { state.confirmDelete = null; act(() => api.deleteGift(g.id), "Gelöscht."); } }, "Wirklich löschen"),
+        el("button", { class: "btn link", type: "button", onclick: () => { state.confirmDelete = null; render(); } }, "Behalten"));
+      else actions.append(el("button", { class: "btn link", type: "button", onclick: () => { state.confirmDelete = g.id; render(); } }, "Entfernen"));
+    }
+    return el("article", { class: "card" + (claim ? " bought" : "") }, pic,
+      el("div", { class: "body" },
+        el("div", { class: "top" }, el("h3", null, title), el("span", { class: "price" }, euro(g.price))),
+        g.shop ? el("span", { class: "shop" }, g.shop) : null,
+        g.note ? el("p", { class: "note" }, g.note) : null,
+        g.pool && !claim ? poolBox(g) : null,
+        actions));
+  }
+
+  function render() {
+    for (const k of ["ole", "merle"]) {
+      const t = $("tab-" + k); t.setAttribute("aria-selected", String(state.kid === k)); t.tabIndex = state.kid === k ? 0 : -1;
+      const all = seen().filter((g) => g.child === k), done = all.filter(isDone);
+      $("sub-" + k).textContent = state.loaded ? done.length + " von " + all.length + " erledigt" : " ";
+    }
+    const panel = $("panel"); panel.className = state.kid; panel.setAttribute("aria-labelledby", "tab-" + state.kid);
+    $("listTitle").textContent = state.kid === "ole" ? "Oles Wünsche" : "Merles Wünsche";
+    const all = seen().filter((g) => g.child === state.kid);
+    const open = all.filter((g) => !isDone(g));
+    const openSum = open.reduce((s, g) => s + (g.pool ? Math.max(0, Number(g.price) - poolSum(g)) : Number(g.price) || 0), 0);
+    $("listSub").textContent = state.loaded ? open.length + " offen · noch " + euroShort(openSum) : "";
+    const grid = $("grid"); grid.replaceChildren();
+    const shown = all.filter(visible);
+    if (!state.loaded) grid.append(el("p", { class: "empty" }, "Die Wünsche werden geladen."));
+    else if (!all.length) grid.append(el("p", { class: "empty" }, "Hier ist noch nichts eingetragen."));
+    else if (!shown.length) grid.append(el("p", { class: "empty" }, "Nichts in diesem Preisbereich. Zieh den Regler weiter auf."));
+    else shown.forEach((g) => grid.append(card(g)));
+  }
+
+  /* ---------- Bedienung ---------- */
+  function selectKid(k) {
+    state.kid = k; state.claiming = null; state.confirmDelete = null; ls.set("wz-kid", k);
+    try { history.replaceState(null, "", "#" + k); } catch (e) {}
+    $("f-child").value = k; render();
+  }
+  document.querySelectorAll(".kid").forEach((b) => {
+    b.addEventListener("click", () => selectKid(b.dataset.kid));
+    b.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight" || e.key === "ArrowLeft") { const n = state.kid === "ole" ? "merle" : "ole"; selectKid(n); $("tab-" + n).focus(); }
+    });
+  });
+  $("minPrice").addEventListener("input", (e) => { state.min = Math.min(+e.target.value, state.max); updateRange(); render(); });
+  $("maxPrice").addEventListener("input", (e) => { state.max = Math.max(+e.target.value, state.min); updateRange(); render(); });
+  document.querySelectorAll(".seg button").forEach((b) => b.addEventListener("click", () => {
+    state.occ = b.dataset.occ;
+    document.querySelectorAll(".seg button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    render();
+  }));
+  $("hideBought").addEventListener("change", (e) => { state.hideBought = e.target.checked; ls.set("wz-hide", state.hideBought); render(); });
+
+  /* ---------- Verwaltung (nur Nadia) ---------- */
+  function showAdmin() { $("admin").hidden = false; }
+  function applyAdmin(on) {
+    state.admin = on; $("adminLogin").hidden = on; $("addForm").hidden = !on; $("occSeg").hidden = !on;
+    if (!on && state.occ === "nikolaus") { state.occ = "all"; document.querySelectorAll(".seg button").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.occ === "all"))); }
+    if (on) showAdmin(); render();
+  }
+  window.addEventListener("hashchange", () => {
+    const h = location.hash.slice(1);
+    if (h === "admin") { showAdmin(); $("admin").scrollIntoView({ behavior: "smooth" }); }
+    else if ((h === "ole" || h === "merle") && h !== state.kid) selectKid(h);
+  });
+  if (hk === "admin" || location.hash.includes("access_token")) showAdmin();
+
+  $("loginForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!live) { applyAdmin(true); notice("Vorschau: Verwaltung ohne Anmeldung geöffnet."); return; }
+    const email = $("loginEmail").value.trim();
+    const r = await sb.auth.signInWithOtp({ email, options: { emailRedirectTo: location.origin + location.pathname + "#admin", shouldCreateUser: false } });
+    $("loginMsg").textContent = r.error ? "Das ging nicht. Ist das die E-Mail, die in Supabase als Nutzerin angelegt ist?" : "Link ist unterwegs. Schau in dein Postfach.";
+  });
+  $("logout").addEventListener("click", async () => { if (live) await sb.auth.signOut(); applyAdmin(false); });
+  if (live) {
+    sb.auth.getSession().then(({ data }) => applyAdmin(!!data.session));
+    sb.auth.onAuthStateChange((_ev, session) => applyAdmin(!!session));
+  }
+
+  $("addForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const title = $("f-title").value.trim();
+    const price = parseFloat(String($("f-price").value).replace(",", "."));
+    if (!title || !(price >= 0)) { $("f-msg").textContent = "Bitte Geschenk und Preis angeben."; return; }
+    $("f-submit").disabled = true; $("f-msg").textContent = "Wird gespeichert …";
+    const ok = await act(async () => {
+      const file = $("f-img").files && $("f-img").files[0];
+      const img = file ? await api.upload(file) : null;
+      await api.addGift({
+        child: $("f-child").value, occasion: $("f-occ").value, title,
+        shop: $("f-shop").value.trim() || null, price: Math.round(price * 100) / 100,
+        url: $("f-url").value.trim() || null, note: $("f-note").value.trim() || null,
+        img, pool: $("f-pool").checked, sort: 1000,
+      });
+    });
+    $("f-submit").disabled = false;
+    if (ok) {
+      ["f-title", "f-shop", "f-price", "f-url", "f-note", "f-img"].forEach((x) => ($(x).value = ""));
+      $("f-pool").checked = false;
+      $("f-msg").textContent = "Auf dem Zettel: " + title;
+      if ($("f-child").value !== state.kid) selectKid($("f-child").value);
+    } else $("f-msg").textContent = "";
+  });
+
+  /* ---------- Start ---------- */
+  $("f-child").value = state.kid;
+  if (!live) notice("Vorschau: Diese Seite ist noch nicht mit der Datenbank verbunden. Häkchen werden nur in diesem Browser gespeichert.");
+  updateRange(); render(); refresh();
+  if (live) {
+    let t = null;
+    const again = () => { clearTimeout(t); t = setTimeout(refresh, 300); };
+    sb.channel("wunschzettel")
+      .on("postgres_changes", { event: "*", schema: "public", table: "gifts" }, again)
+      .on("postgres_changes", { event: "*", schema: "public", table: "claims" }, again)
+      .on("postgres_changes", { event: "*", schema: "public", table: "contributions" }, again)
+      .subscribe();
+    document.addEventListener("visibilitychange", () => { if (!document.hidden) refresh(); });
+  }
+})();
+</script>
+</body>
+</html>
