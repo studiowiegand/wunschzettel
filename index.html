@@ -12,20 +12,20 @@
 /* Studora-Look: Creme-Grund, tiefes Waldgrün, Orange als Aktion, Pastell je Kind. Layout: Hero mit Kinderwahl, Welle, Filter, Kartenraster */
 :root {
   color-scheme: light;
-  --cream: #f4f0e5;
-  --sand: #eae4d3;
-  --forest: #14261d;
-  --forest-2: #1b3428;
-  --moss: #497e64;
-  --text: #45564b;
-  --orange: #e8722c;
-  --orange-edge: #b26e45;
-  --line: rgba(20, 38, 29, .1);
-  --ole: #c9e0f2;
-  --ole-ink: #2f5f86;
-  --merle: #f6d7e8;
-  --merle-ink: #8e3f68;
-  --lime: #d6e59a;
+  --cream: #efe9e1;
+  --sand: #e3dbcd;
+  --forest: #173f2c;
+  --forest-2: #233a2b;
+  --moss: #356b51;
+  --text: #3c4a40;
+  --orange: #b3201f;
+  --orange-edge: #6e1311;
+  --line: rgba(23, 63, 44, .12);
+  --ole: #c3d6c4;
+  --ole-ink: #2c5c43;
+  --merle: #f0d2cc;
+  --merle-ink: #8a2a24;
+  --lime: #b8be98;
   --white: #ffffff;
   --font-head: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
   --font-body: "Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
@@ -63,7 +63,7 @@ h1, h2, h3 { font-family: var(--font-head); color: var(--forest); margin: 0; tex
 }
 .btn:hover { transform: translateY(2px); box-shadow: 0 2px 0 0 var(--forest-2); }
 .btn:active { transform: translateY(4px); box-shadow: 0 0 0 0 var(--forest-2); }
-.btn.orange { background: var(--orange); border-color: var(--orange-edge); box-shadow: 0 4px 0 0 var(--orange-edge); color: var(--forest); }
+.btn.orange { background: var(--orange); border-color: var(--orange-edge); box-shadow: 0 4px 0 0 var(--orange-edge); color: var(--white); }
 .btn.orange:hover { box-shadow: 0 2px 0 0 var(--orange-edge); }
 .btn.dark { background: var(--forest-2); border-color: var(--moss); box-shadow: 0 4px 0 0 var(--moss); color: var(--white); }
 .btn.dark:hover { box-shadow: 0 2px 0 0 var(--moss); }
@@ -78,7 +78,7 @@ h1, h2, h3 { font-family: var(--font-head); color: var(--forest); margin: 0; tex
 .hero h1 {
   font-weight: 700; font-size: clamp(46px, 9vw, 112px); line-height: .95; letter-spacing: -0.06em;
 }
-.hero h1 .swash { display: inline-block; color: var(--moss); transform: rotate(-5deg) translateY(.06em); font-weight: 800; }
+.hero h1 .swash { display: inline-block; color: var(--orange); transform: rotate(-5deg) translateY(.06em); font-weight: 800; }
 .hero p { max-width: 54ch; margin: 22px auto 0; font-size: 18px; }
 .kids { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 30px; }
 .kid {
@@ -109,7 +109,7 @@ h1, h2, h3 { font-family: var(--font-head); color: var(--forest); margin: 0; tex
 .range-head output { color: var(--forest); font-weight: 600; font-variant-numeric: tabular-nums; }
 .slider { position: relative; height: 30px; }
 .slider .track, .slider .fill { position: absolute; top: 13px; height: 4px; border-radius: 4px; }
-.slider .track { left: 0; right: 0; background: rgba(20, 38, 29, .15); }
+.slider .track { left: 0; right: 0; background: rgba(23, 63, 44, .18); }
 .slider .fill { background: var(--forest-2); }
 .slider input { position: absolute; inset: 0; width: 100%; margin: 0; background: none; pointer-events: none; -webkit-appearance: none; appearance: none; height: 30px; }
 .slider input::-webkit-slider-thumb { -webkit-appearance: none; pointer-events: auto; width: 24px; height: 24px; border-radius: 50%; background: var(--orange); border: 2px solid var(--forest-2); cursor: grab; }
@@ -139,7 +139,7 @@ main { padding-block: 34px 80px; }
 .card .pic img { position: absolute; inset: 18px; width: calc(100% - 36px); height: calc(100% - 36px); object-fit: contain; mix-blend-mode: multiply; }
 .card .pic .ph { font: 800 64px var(--font-head); color: var(--forest); opacity: .25; }
 .badge { position: absolute; top: 14px; left: 14px; background: var(--forest-2); color: var(--white); font-size: 13px; font-weight: 500; padding: 5px 12px; border-radius: var(--r-pill); }
-.badge.pool { background: var(--orange); color: var(--forest); }
+.badge.pool { background: var(--orange); color: var(--white); }
 .card .body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
 .card .top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
 .card h3 { font-weight: 600; font-size: 21px; line-height: 1.15; letter-spacing: -0.04em; min-width: 0; overflow-wrap: anywhere; }
@@ -202,7 +202,7 @@ footer a { color: var(--forest); }
 <header class="nav">
   <div class="wrap">
     <a class="logo" href="#">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="12" width="22" height="16" rx="3" fill="#e8722c"/><rect x="3" y="8" width="26" height="6" rx="2" fill="#1b3428"/><rect x="14" y="8" width="4" height="20" fill="#d6e59a"/><path d="M16 8c-3-6-9-5-8-1 1 3 8 1 8 1zm0 0c3-6 9-5 8-1-1 3-8 1-8 1z" fill="#497e64"/></svg>
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="12" width="22" height="16" rx="3" fill="#b3201f"/><rect x="3" y="8" width="26" height="6" rx="2" fill="#6e1311"/><rect x="14" y="8" width="4" height="20" fill="#18432c"/><path d="M16 8c-3-6-9-5-8-1 1 3 8 1 8 1zm0 0c3-6 9-5 8-1-1 3-8 1-8 1z" fill="#356b51"/></svg>
       Wunschzettel
     </a>
     <span class="countdown" id="countdown"></span>
@@ -224,7 +224,7 @@ footer a { color: var(--forest); }
   </div>
   <div class="wave" aria-hidden="true">
     <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-      <path id="wavePath" d="M-40 70 C 200 10, 420 110, 720 60 S 1240 10, 1480 60" fill="none" stroke="#497e64" stroke-width="34" stroke-linecap="round"/>
+      <path id="wavePath" d="M-40 70 C 200 10, 420 110, 720 60 S 1240 10, 1480 60" fill="none" stroke="#a8201f" stroke-width="34" stroke-linecap="round"/>
       <text dy="5"><textPath id="waveText" href="#wavePath" startOffset="0">Leise rieselt der Schnee · O Tannenbaum, wie grün sind deine Blätter · Kling, Glöckchen, klingelingeling · Morgen, Kinder, wird's was geben · Alle Jahre wieder · Süßer die Glocken nie klingen · Stille Nacht, heilige Nacht · Leise rieselt der Schnee · O Tannenbaum, wie grün sind deine Blätter · Kling, Glöckchen, klingelingeling · Morgen, Kinder, wird's was geben · Alle Jahre wieder · Süßer die Glocken nie klingen · Stille Nacht, heilige Nacht ·</textPath></text>
     </svg>
   </div>
