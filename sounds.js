@@ -5,25 +5,44 @@
   try { on = localStorage.getItem(KEY) !== "aus"; } catch (e) {}
   var ctx = null;
 
+  var master = null;
+  // iPhone: Töne auch bei Lautlos-Schalter abspielen
+  try { if (navigator.audioSession) navigator.audioSession.type = "playback"; } catch (e) {}
+
   function ac() {
     if (!ctx) {
       var C = window.AudioContext || window.webkitAudioContext;
       if (!C) return null;
       ctx = new C();
+      var comp = ctx.createDynamicsCompressor();
+      comp.threshold.value = -18; comp.ratio.value = 4;
+      master = ctx.createGain(); master.gain.value = 1;
+      master.connect(comp); comp.connect(ctx.destination);
     }
-    if (ctx.state === "suspended") ctx.resume();
+    if (ctx.state !== "running") { try { ctx.resume(); } catch (e) {} }
     return ctx;
   }
+
+  // Beim ersten Tippen Audio freischalten (Safari braucht das)
+  function unlock() {
+    var a = ac(); if (!a) return;
+    var b = a.createBuffer(1, 1, 22050), s = a.createBufferSource();
+    s.buffer = b; s.connect(a.destination); s.start(0);
+    document.removeEventListener("touchstart", unlock, true);
+    document.removeEventListener("pointerdown", unlock, true);
+  }
+  document.addEventListener("touchstart", unlock, true);
+  document.addEventListener("pointerdown", unlock, true);
 
   // Glocke: Grundton plus unharmonische Obertöne, weich ausklingend
   function bell(freq, when, vol, len) {
     var a = ac(); if (!a) return;
-    var t = a.currentTime + (when || 0);
+    var t = a.currentTime + 0.03 + (when || 0);
     var out = a.createGain();
     out.gain.setValueAtTime(0.0001, t);
-    out.gain.exponentialRampToValueAtTime(vol || 0.25, t + 0.008);
+    out.gain.exponentialRampToValueAtTime(Math.min(0.9, (vol || 0.25) * 3), t + 0.008);
     out.gain.exponentialRampToValueAtTime(0.0001, t + (len || 1.2));
-    out.connect(a.destination);
+    out.connect(master);
     [[1, 1], [2.76, 0.45], [5.4, 0.22], [8.93, 0.1]].forEach(function (p) {
       var o = a.createOscillator(), g = a.createGain();
       o.type = "sine"; o.frequency.value = freq * p[0];
@@ -39,11 +58,11 @@
     var n = a.sampleRate * 0.12, buf = a.createBuffer(1, n, a.sampleRate), d = buf.getChannelData(0);
     for (var i = 0; i < n; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / n, 3);
     for (var k = 0; k < (count || 3); k++) {
-      var t = a.currentTime + (when || 0) + k * 0.055 + Math.random() * 0.015;
+      var t = a.currentTime + 0.03 + (when || 0) + k * 0.055 + Math.random() * 0.015;
       var s = a.createBufferSource(); s.buffer = buf;
-      var f = a.createBiquadFilter(); f.type = "bandpass"; f.frequency.value = 5200 + Math.random() * 2500; f.Q.value = 6;
-      var g = a.createGain(); g.gain.value = 0.35;
-      s.connect(f); f.connect(g); g.connect(a.destination);
+      var f = a.createBiquadFilter(); f.type = "bandpass"; f.frequency.value = 5200 + Math.random() * 2500; f.Q.value = 3;
+      var g = a.createGain(); g.gain.value = 1.4;
+      s.connect(f); f.connect(g); g.connect(master);
       s.start(t);
     }
   }
